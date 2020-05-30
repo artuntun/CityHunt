@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="mystyle.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<title>Arturo Arranz</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="background-color:#FFA500;">
+	<div class='content'>
+		<div class='topheader'>
+			<div class='left'><img src="CityHunt.png" alt="Mountain View" style="width:25%;"></div>
+			<div class='right' id="rojo"><h1>CityHunt</h1></div>
+		</div>
+		<div class="row">
+			<div id="map"></div>
+			<div class='col'>
+        <h2 id="contentTitle">Challenge 1</h2>
+				<div id="content"><p>Try to make the guards smile and take a picture of them!</p></div>
+				<div id="upload">
+					<form id="monu" method="POST">
+	    			<input name="monument" placeholder="">
+	    			<input type="submit">
+					</form>
+					<form id="face" method="POST">
+	    			<input name="face" placeholder="">
+	    			<input type="submit">
+					</form>
+				</div>
+				<div id="info"></div>
+			</div>
+
+			<div id="challenges" class='col'>
+				<div class="btn-group-vertical">
+				  <button id="challenge1" type="button" class="btn btn-primary">Amalienborg</button>
+					<button id="challenge2" type="button" class="btn btn-primary">Opera</button>
+					<button id="challenge3" type="button" class="btn btn-primary">Little Mermaid</button>
+					<button id="challenge4" type="button" class="btn btn-primary">Frederik’s Church</button>
+					<button id="challenge5" type="button" class="btn btn-primary">Nyhavn</button>
+					<button id="challenge6" type="button" class="btn btn-primary">Christiania</button>
+					<button id="challenge7" type="button" class="btn btn-primary">Black Diamond</button>
+					<button id="challenge8" type="button" class="btn btn-primary">Christiansborg palace</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<script>
+				$("#face").hide();
+				$("#monu").hide();
+        contador = 0;
+				title = "<h1>Rojo</h1>"
+				challenge1title = "<h2>Challenge 1: Amalienborg</h2>"
+				challenge1solved = true
+				challenge1text = "<p>Try to make the guards smile and take a picture of them!</p>"
+				challenge1text2 = "<p>Try to make the guards smile and take a picture of them!</p>"
+				challenge1congrats = "<p> It consists of four palaces. Amalienborg became the Danish Royal Families residence in 1794 when a fire destroyed the real palace. </p>"
+				challenge2title = "<h2>Challenge 2: Opera</h2>"
+				challenge2text = "<p>Take a funny picture of you with the Opera!</p>"
+				challenge3title = "<h2>Challenge 3: Little Mermaid</h2>"
+				challenge3text = "<p>Take a picture of the Little Mermaid!</p>"
+				challenge4title = "<h2>Challenge 4: Frederik’s Church</h2>"
+				challenge4text = "<p>What is written in gold on the entrance of the church?</p>"
+				challenge5title = "<h2>Challenge 5: Nyhavn</h2>"
+				challenge5text = "<p> How many different colors are in the buildings?</p>"
+				challenge6title = "<h2>Challenge 6: Christiania</h2>"
+				challenge6text = "<p> What are the 9 commons laws of Christiania?</p>"
+				challenge7title = "<h2>Challenge 7: Black Diamond</h2>"
+				challenge7text = "<p> How large is the oil painting on the ceiling of one of the corridors?</p>"
+				challenge8title = "<h2>Challenge 8: Christiansborg palace</h2>"
+				challenge8text = "<p> How many rocks there are in the square?</p>"
+	      function initMap() {
+	        var myLatlng = {lat: 55.701, lng: 12.599};
+					var paria = {lat: 70.701, lng: 12.599};
+					var chellenge1 = {lat: 55.684, lng: 12.593};
+					var challenge2 = {lat: 55.683, lng: 12.595};
+					var challenge3 = {lat: 55.692, lng: 12.599};
+					var challenge4 = {lat: 55.684, lng: 12.589};
+					var challenge5 = {lat: 55.680, lng: 12.587};
+					var challenge6 = {lat: 55.674, lng: 12.597};
+					var challenge7 = {lat: 55.673, lng: 12.582};
+					var challenge8 = {lat: 55.675, lng: 12.578};
+
+	        var map = new google.maps.Map(document.getElementById('map'), {
+	          zoom: 12,
+	          center: myLatlng
+	        });
+
+	        var marker = new google.maps.Marker({
+	          position: paria,
+	          map: map,
+	          title: 'Click to zoom'
+	        });
+
+	        marker.addListener('click', function() {
+	          map.setZoom(11);
+	          map.setCenter(marker.getPosition());
+	        });
+
+				 document.getElementById("challenge1").addEventListener("click", function(){
+					 if (!marker) return;
+					 contador = contador +1;
+					 $("#content").html(challenge1text);
+					 $("#contentTitle").html(challenge1title);
+					 $("#face").show();
+					 $("#monu").hide();
+					 if (challenge1solved) {
+    		 		$("#info").html(challenge1congrats);
+					 }
+
+
+
+					 //myPosition.lat += 0.05;
+					 //marker.setPosition(myPosition);
+					 var marker1 = new google.maps.Marker({
+ 	          position: chellenge1,
+ 	          map: map,
+ 	          title: 'Click to zoom'
+ 	         });
+					 map.setZoom(14);
+					 map.setCenter(marker1.getPosition());
+
+			 	 });
+				 document.getElementById("challenge2").addEventListener("click", function(){
+					 if (!marker) return;
+					 $("#content").html(challenge2text);
+					 $("#contentTitle").html(challenge2title);
+					 $("#face").hide();
+					 $("#monu").show();
+					 var marker2 = new google.maps.Marker({
+ 	          position: challenge2,
+ 	          map: map,
+ 	          title: 'Click to zoom'
+ 	         });
+					 map.setZoom(14);
+					 map.setCenter(marker2.getPosition());
+			 	 });
+				 document.getElementById("challenge3").addEventListener("click", function(){
+					 if (!marker) return;
+					 $("#content").html(challenge3text);
+					 $("#contentTitle").html(challenge3title);
+					 $("#face").hide();
+					 $("#monu").show();
+					 var marker3 = new google.maps.Marker({
+ 	          position: challenge3,
+ 	          map: map,
+ 	          title: 'Click to zoom'
+ 	         });
+					 map.setZoom(14);
+					 map.setCenter(marker3.getPosition());
+			 	 });
+				 document.getElementById("challenge4").addEventListener("click", function(){
+					 if (!marker) return;
+					 $("#content").html(challenge4text);
+					 $("#contentTitle").html(challenge4title);
+					 $("#face").hide();
+					 $("#monu").hide();
+					 var marker4 = new google.maps.Marker({
+ 	          position: challenge4,
+ 	          map: map,
+ 	          title: 'Click to zoom'
+ 	         });
+					 map.setZoom(14);
+					 map.setCenter(marker4.getPosition());
+			 	 });
+				 document.getElementById("challenge5").addEventListener("click", function(){
+					 if (!marker) return;
+					 $("#content").html(challenge5text);
+					 $("#contentTitle").html(challenge5title);
+					 $("#face").hide();
+					 $("#monu").hide();
+					 var marker5 = new google.maps.Marker({
+ 	          position: challenge5,
+ 	          map: map,
+ 	          title: 'Click to zoom'
+ 	         });
+					 map.setZoom(14);
+					 map.setCenter(marker5.getPosition());
+			 	 });
+				 document.getElementById("challenge6").addEventListener("click", function(){
+					 if (!marker) return;
+					 $("#content").html(challenge6text);
+					 $("#contentTitle").html(challenge6title);
+					 $("#face").hide();
+					 $("#monu").hide();
+					 var marker6 = new google.maps.Marker({
+ 	          position: challenge6,
+ 	          map: map,
+ 	          title: 'Click to zoom'
+ 	         });
+					 map.setZoom(14);
+					 map.setCenter(marker6.getPosition());
+			 	 });
+				 document.getElementById("challenge7").addEventListener("click", function(){
+					 if (!marker) return;
+					 $("#content").html(challenge7text);
+					 $("#contentTitle").html(challenge7title);
+					 $("#face").hide();
+					 $("#monu").hide();
+					 var marker7 = new google.maps.Marker({
+ 	          position: challenge7,
+ 	          map: map,
+ 	          title: 'Click to zoom'
+ 	         });
+					 map.setZoom(14);
+					 map.setCenter(marker7.getPosition());
+			 	 });
+				 document.getElementById("challenge8").addEventListener("click", function(){
+					 if (!marker) return;
+					 $("#content").html(challenge8text);
+					 $("#contentTitle").html(challenge8title);
+					 $("#face").hide();
+					 $("#monu").hide();
+					 var marker8 = new google.maps.Marker({
+ 	          position: challenge8,
+ 	          map: map,
+ 	          title: 'Click to zoom'
+ 	         });
+					 map.setZoom(14);
+					 map.setCenter(marker8.getPosition());
+			 	 });
+	      }
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgJkOEFLTP492_luapIDUcJm7CcCGdpgc&callback=initMap">
+</script>
+</body>
+</html>
