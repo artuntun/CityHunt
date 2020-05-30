@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="mystyle.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<title>Arturo Arranz</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div>
+	<div>
+		<div class='topheader'>
+			<div class='left'><h1>CityHunt</h1></div>
+		</div>
+		<div class="row">
+			<div id="map"></div>
+			<div class='col'>
+        <button id="arturo-button" type="button" class="btn btn-primary">boton</button>
+			</div>
+		</div>
+	</div>
+	</div>
+  <script>
+        var marker = null;
+        var myPosition = {
+          lat: 55.786,
+          lng: 12.518
+        };
+
+        function initMap() {
+          var uluru1 = {lat: 55.812, lng: 12.518};
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: myPosition
+          });
+          var marker1 = new google.maps.Marker({
+            position: uluru1,
+            map: map
+          });
+        }
+
+        document.getElementById("arturo-button").addEventListener("click", function(){
+          if (!marker) return;
+          myPosition.lat += 0.05;
+          marker.setPosition(myPosition);
+        });
+      </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgJkOEFLTP492_luapIDUcJm7CcCGdpgc&callback=initMap">
+</script>
+</body>
+</html>
